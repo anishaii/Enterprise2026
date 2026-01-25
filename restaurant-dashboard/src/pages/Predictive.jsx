@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+ import React, { useMemo } from 'react';
 import {
   LineChart, Line, BarChart, Bar, AreaChart, Area, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
@@ -23,8 +23,8 @@ const Predictive = ({ orders, customers }) => {
     const avgRevenue = sortedDates.reduce((sum, [, val]) => sum + val, 0) / sortedDates.length;
     
     // Simple moving average forecast
-    const historical = sortedDates.map(([date, revenue]) => ({
-      date: date.substring(5),
+    const historical = sortedDates.map(([date, revenue], index) => ({
+      date: `Day ${index + 1}`,
       revenue: parseFloat(revenue.toFixed(0)),
       type: 'Actual'
     }));
@@ -58,8 +58,8 @@ const Predictive = ({ orders, customers }) => {
 
     const avgOrders = sortedDates.reduce((sum, [, val]) => sum + val, 0) / sortedDates.length;
 
-    const historical = sortedDates.map(([date, ordersCount]) => ({
-      date: date.substring(5),
+    const historical = sortedDates.map(([date, ordersCount], index) => ({
+      date: `Day ${index + 1}`,
       orders: ordersCount,
       type: 'Actual'
     }));
@@ -164,8 +164,8 @@ const Predictive = ({ orders, customers }) => {
     const sortedMonths = Object.entries(monthlyCategory)
       .sort(([a], [b]) => a.localeCompare(b))
       .slice(-6)
-      .map(([month, count]) => ({
-        month: month.substring(5),
+      .map(([month, count], index) => ({
+        month: `Month ${index + 1}`,
         orders: count,
         trend: 'Stable'
       }));
@@ -196,7 +196,7 @@ const Predictive = ({ orders, customers }) => {
         <ResponsiveContainer width="100%" height={350}>
           <AreaChart data={revenueForecasting}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="date" tick={{ fontSize: 11 }} />
+            <XAxis dataKey="date" tick={{ fontSize: 14 }} />
             <YAxis />
             <Tooltip
               contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937' }}
@@ -216,7 +216,7 @@ const Predictive = ({ orders, customers }) => {
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={customerForecast}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="date" tick={{ fontSize: 10 }} interval={2} />
+              <XAxis dataKey="date" tick={{ fontSize: 13 }} interval={2} />
               <YAxis />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937' }}

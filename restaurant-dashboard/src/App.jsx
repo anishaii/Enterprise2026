@@ -16,7 +16,8 @@ function App() {
     orders: [],
     customers: [],
     orderItems: [],
-    menuCatalog: []
+    menuCatalog: [],
+    newFile: []
   });
   const [logo, setLogo] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -72,6 +73,24 @@ function App() {
     loadData();
   }, []);
 
+  // Handle file upload for new entry
+  const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const csvText = e.target.result;
+        const parsedData = parseCSV(csvText);
+        setData(prevData => ({
+          ...prevData,
+          newFile: parsedData
+        }));
+        console.log(`Uploaded new file with ${parsedData.length} entries`);
+      };
+      reader.readAsText(file);
+    }
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'overview':
@@ -103,12 +122,13 @@ function App() {
   return (
     <div className="flex h-screen bg-gray-100">
       {/* Sidebar */}
-      <Sidebar 
-        isOpen={sidebarOpen} 
-        setIsOpen={setSidebarOpen} 
-        currentPage={currentPage} 
+      <Sidebar
+        isOpen={sidebarOpen}
+        setIsOpen={setSidebarOpen}
+        currentPage={currentPage}
         setCurrentPage={setCurrentPage}
         logo={logo}
+        onFileUpload={handleFileUpload}
       />
 
       {/* Main Content */}

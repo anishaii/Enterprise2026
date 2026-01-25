@@ -311,9 +311,9 @@ const Diagnostic = ({ orders, customers, orderItems }) => {
         <ResponsiveContainer width="100%" height={420}>
           <BarChart data={waitTimeAnalysis} margin={{ top: 20, right: 40, bottom: 5, left: 100 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="waitTime" label={{ value: 'Wait Time (minutes)', position: 'insideBottom', offset: -5 }} tick={{ fontSize: 12 }} />
-            <YAxis yAxisId="left" label={{ value: 'Satisfaction Score', angle: -90, position: 'insideLeft' }} tick={{ fontSize: 12 }} />
-            <YAxis yAxisId="right" orientation="right" label={{ value: 'Number of Orders', angle: 90, position: 'insideRight' }} tick={{ fontSize: 12 }} />
+            <XAxis dataKey="waitTime" label={{ value: 'Wait Time (minutes)', position: 'insideBottom', offset: -5 }} tick={{ fontSize: 15 }} />
+            <YAxis yAxisId="left" label={{ value: 'Satisfaction Score', angle: -90, position: 'insideLeft' }} tick={{ fontSize: 15 }} />
+            <YAxis yAxisId="right" orientation="right" label={{ value: 'Number of Orders', angle: 90, position: 'insideRight' }} tick={{ fontSize: 15 }} />
             <Tooltip
               contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937' }}
             />

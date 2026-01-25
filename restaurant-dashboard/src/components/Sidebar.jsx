@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { Menu, X, Plus } from 'lucide-react';
 
-const Sidebar = ({ isOpen, setIsOpen, currentPage, setCurrentPage, logo }) => {
+const Sidebar = ({ isOpen, setIsOpen, currentPage, setCurrentPage, logo, onFileUpload }) => {
+  const fileInputRef = useRef(null);
+
   const menuItems = [
     { id: 'overview', label: 'Overview', icon: '📊' },
     { id: 'descriptive', label: 'Descriptive', icon: '📈' },
@@ -70,7 +72,17 @@ const Sidebar = ({ isOpen, setIsOpen, currentPage, setCurrentPage, logo }) => {
 
         {/* Add New Entry Button */}
         <div className="p-4 border-t border-dark-700">
-          <button className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl">
+          <input
+            type="file"
+            ref={fileInputRef}
+            onChange={onFileUpload}
+            accept=".csv"
+            style={{ display: 'none' }}
+          />
+          <button
+            onClick={() => fileInputRef.current.click()}
+            className="w-full bg-gradient-to-r from-primary-500 to-primary-600 hover:from-primary-600 hover:to-primary-700 text-white font-semibold py-3 px-4 rounded-lg flex items-center justify-center gap-2 transition-all duration-200 shadow-lg hover:shadow-xl"
+          >
             <Plus size={20} />
             <span>Add New Entry</span>
           </button>

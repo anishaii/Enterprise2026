@@ -28,8 +28,13 @@ const Overview = ({ orders, customers, orderItems }) => {
     hourly[hour] = (hourly[hour] || 0) + 1;
   });
   const hourlyData = Object.entries(hourly)
-    .map(([hour, count]) => ({ hour: `${hour}:00`, orders: count }))
-    .sort((a, b) => parseInt(a.hour) - parseInt(b.hour))
+    .map(([hour, count]) => {
+      const hourNum = parseInt(hour);
+      const ampm = hourNum >= 12 ? 'PM' : 'AM';
+      const displayHour = hourNum === 0 ? 12 : hourNum > 12 ? hourNum - 12 : hourNum;
+      return { hour: `${displayHour}:00 ${ampm}`, orders: count };
+    })
+    .sort((a, b) => parseInt(a.hour.split(':')[0]) - parseInt(b.hour.split(':')[0]))
     .slice(0, 12);
 
   // Category distribution
@@ -86,10 +91,14 @@ const Overview = ({ orders, customers, orderItems }) => {
     const cid = order.customer_id;
     customerSpending[cid] = (customerSpending[cid] || 0) + parseFloat(order.total_amount_npr || 0);
   });
+
+  // Dummy customer names for display
+  const dummyNames = ["John Smith", "Sarah Johnson", "Mike Davis", "Emily Wilson", "David Brown"];
+
   const topCustomers = Object.entries(customerSpending)
     .sort((a, b) => b[1] - a[1])
     .slice(0, 5)
-    .map(([id, spending], idx) => ({ rank: idx + 1, customer: `Cust ${id.substring(0, 6)}`, spending: parseFloat(spending.toFixed(0)) }));
+    .map(([id, spending], idx) => ({ rank: idx + 1, customer: dummyNames[idx] || `Customer ${idx + 1}`, spending: parseFloat(spending.toFixed(0)) }));
 
   // Location analysis
   const locations = {};
@@ -101,7 +110,7 @@ const Overview = ({ orders, customers, orderItems }) => {
   });
   const locationData = Object.entries(locations)
     .map(([loc, data]) => ({
-      location: loc.substring(0, 12),
+      location: `${loc} Branch`,
       orders: data.orders,
       revenue: parseFloat(data.revenue.toFixed(0))
     }))
@@ -134,8 +143,8 @@ const Overview = ({ orders, customers, orderItems }) => {
         <KPICard
           icon={DollarSign}
           label="Total Revenue"
-          value={`₹${totalRevenue.toFixed(0).charAt(0)}.${totalRevenue.toFixed(0).slice(1, 3)}`}
-          unit="M"
+          value={`₹${totalRevenue.toFixed(0)}`}
+          unit=""
           color="border-blue-600"
         />
         <KPICard
@@ -177,8 +186,8 @@ const Overview = ({ orders, customers, orderItems }) => {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="hour" tick={{ fontSize: 13 }} />
-              <YAxis tick={{ fontSize: 13 }} />
+              <XAxis dataKey="hour" tick={{ fontSize: 16 }} />
+              <YAxis tick={{ fontSize: 16 }} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937', fontSize: 13 }}
                 cursor={{ fill: 'rgba(14, 165, 233, 0.1)' }}
@@ -197,18 +206,18 @@ const Overview = ({ orders, customers, orderItems }) => {
             <BarChart
               data={categoryData}
               layout="vertical"
-              margin={{ left: 150, right: 40, top: 10, bottom: 10 }}
+              margin={{ left: 20, right: 40, top: 10, bottom: 10 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" tick={{ fontSize: 13 }} />
-              <YAxis dataKey="name" type="category" width={145} tick={{ fontSize: 13 }} />
+              <XAxis type="number" tick={{ fontSize: 16 }} />
+              <YAxis dataKey="name" type="category" width={120} tick={{ fontSize: 16 }} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937', fontSize: 13 }}
                 formatter={(value) => `₹${value.toLocaleString()}`}
               />
               <Bar dataKey="value" radius={[0, 8, 8, 0]}>
                 {categoryData.map((entry, index) => (
-                  <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
                 ))}
               </Bar>
             </BarChart>
@@ -231,7 +240,7 @@ const Overview = ({ orders, customers, orderItems }) => {
                 outerRadius={100}
                 paddingAngle={2}
                 dataKey="value"
-                label={{ fontSize: 13, fontWeight: 'bold' }}
+                label={{ fontSize: 16, fontWeight: 'bold' }}
               >
                 {mealData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
@@ -242,6 +251,7 @@ const Overview = ({ orders, customers, orderItems }) => {
               />
             </PieChart>
           </ResponsiveContainer>
+          <p className="text-sm text-gray-600 mt-2">Distribution of orders across different meal periods (Breakfast, Lunch, Dinner, etc.)</p>
         </div>
 
         {/* Payment Methods */}
@@ -257,7 +267,7 @@ const Overview = ({ orders, customers, orderItems }) => {
                 outerRadius={100}
                 paddingAngle={2}
                 dataKey="value"
-                label={{ fontSize: 13, fontWeight: 'bold' }}
+                label={{ fontSize: 16, fontWeight: 'bold' }}
               >
                 {paymentData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
@@ -268,6 +278,7 @@ const Overview = ({ orders, customers, orderItems }) => {
               />
             </PieChart>
           </ResponsiveContainer>
+          <p className="text-sm text-gray-600 mt-2">Breakdown of payment methods used by customers (Cash, Card, Digital Wallet, etc.)</p>
         </div>
 
         {/* Order Types */}
@@ -283,7 +294,7 @@ const Overview = ({ orders, customers, orderItems }) => {
                 outerRadius={100}
                 paddingAngle={2}
                 dataKey="value"
-                label={{ fontSize: 13, fontWeight: 'bold' }}
+                label={{ fontSize: 16, fontWeight: 'bold' }}
               >
                 {orderTypeData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={pieColors[index % pieColors.length]} />
@@ -294,6 +305,7 @@ const Overview = ({ orders, customers, orderItems }) => {
               />
             </PieChart>
           </ResponsiveContainer>
+          <p className="text-sm text-gray-600 mt-2">Breakdown of order types (Dine-in, Takeout, Delivery, etc.)</p>
         </div>
       </div>
 
@@ -305,12 +317,16 @@ const Overview = ({ orders, customers, orderItems }) => {
           <ResponsiveContainer width="100%" height={300}>
             <ComposedChart data={dayData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="day" tick={{ fontSize: 13 }} />
-              <YAxis tick={{ fontSize: 13 }} />
+              <XAxis dataKey="day" tick={{ fontSize: 16 }} />
+              <YAxis tick={{ fontSize: 16 }} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937', fontSize: 13 }}
               />
-              <Bar dataKey="orders" fill="#0ea5e9" radius={[8, 8, 0, 0]} />
+              <Bar dataKey="orders" radius={[8, 8, 0, 0]}>
+                {dayData.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                ))}
+              </Bar>
               <Line type="monotone" dataKey="orders" stroke="#f59e0b" strokeWidth={2} dot={{ fill: '#f59e0b', r: 5 }} />
             </ComposedChart>
           </ResponsiveContainer>
@@ -319,18 +335,26 @@ const Overview = ({ orders, customers, orderItems }) => {
         {/* Location Performance */}
         <div className="bg-white rounded-lg p-6 shadow-md card-hover">
           <h3 className="text-lg font-bold text-dark-900 mb-4">Revenue by Location</h3>
-          <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={locationData} margin={{ left: 10, right: 30, top: 10, bottom: 80 }}>
+          <ResponsiveContainer width="100%" height={350}>
+            <BarChart data={locationData} margin={{ left: 20, right: 30, top: 10, bottom: 60 }} barCategoryGap={15}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="location" tick={{ fontSize: 13 }} angle={-45} textAnchor="end" height={100} />
-              <YAxis yAxisId="left" tick={{ fontSize: 13 }} />
-              <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 13 }} />
+              <XAxis dataKey="location" tick={{ fontSize: 16 }} angle={-45} textAnchor="end" height={120} />
+              <YAxis yAxisId="left" tick={{ fontSize: 16 }} />
+              <YAxis yAxisId="right" orientation="right" tick={{ fontSize: 16 }} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937', fontSize: 13 }}
               />
-              <Legend wrapperStyle={{ fontSize: 13, paddingTop: 20 }} />
-              <Bar yAxisId="left" dataKey="revenue" fill="#0284c7" radius={[8, 8, 0, 0]} />
-              <Bar yAxisId="right" dataKey="orders" fill="#f59e0b" radius={[8, 8, 0, 0]} />
+              <Legend wrapperStyle={{ fontSize: 16, paddingTop: 20 }} />
+              <Bar yAxisId="left" dataKey="revenue" radius={[8, 8, 0, 0]}>
+                {locationData.map((entry, index) => (
+                  <Cell key={`revenue-${index}`} fill={colors[index % colors.length]} />
+                ))}
+              </Bar>
+              <Bar yAxisId="right" dataKey="orders" radius={[8, 8, 0, 0]}>
+                {locationData.map((entry, index) => (
+                  <Cell key={`orders-${index}`} fill={colors[(index + 2) % colors.length]} />
+                ))}
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>
@@ -348,13 +372,17 @@ const Overview = ({ orders, customers, orderItems }) => {
               margin={{ left: 100, right: 30, top: 5, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis type="number" tick={{ fontSize: 13 }} />
-              <YAxis dataKey="customer" type="category" width={100} tick={{ fontSize: 12 }} />
+              <XAxis type="number" tick={{ fontSize: 16 }} />
+              <YAxis dataKey="customer" type="category" width={100} tick={{ fontSize: 15 }} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937', fontSize: 13 }}
                 formatter={(value) => `₹${value.toLocaleString()}`}
               />
-              <Bar dataKey="spending" fill="#10b981" radius={[0, 8, 8, 0]} />
+              <Bar dataKey="spending" radius={[0, 8, 8, 0]}>
+                {topCustomers.map((entry, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+                ))}
+              </Bar>
             </BarChart>
           </ResponsiveContainer>
         </div>

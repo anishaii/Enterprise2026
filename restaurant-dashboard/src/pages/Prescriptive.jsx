@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, memo } from 'react';
 import {
   BarChart, Bar, Line, ScatterChart, Scatter, Cell,
   XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 
-const Prescriptive = ({ orders, customers, orderItems }) => {
+const Prescriptive = memo(({ orders, customers, orderItems }) => {
   // Cohort Analysis
   const cohortAnalysis = useMemo(() => {
     if (!orders || orders.length === 0) return [];
@@ -271,7 +271,7 @@ const Prescriptive = ({ orders, customers, orderItems }) => {
         <ResponsiveContainer width="100%" height={480}>
           <BarChart data={cohortAnalysis} margin={{ top: 20, right: 80, bottom: 20, left: 100 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" tick={{ fontSize: 12 }} />
+            <XAxis dataKey="name" tick={{ fontSize: 15 }} />
             <YAxis yAxisId="left" width={100} label={{ value: 'Avg Order Value (₹)', angle: -90, position: 'insideLeft', offset: 10 }} />
             <YAxis yAxisId="right" width={80} orientation="right" label={{ value: 'Satisfaction', angle: 90, position: 'insideRight', offset: 10 }} />
             <Tooltip
@@ -427,7 +427,7 @@ const Prescriptive = ({ orders, customers, orderItems }) => {
         <ResponsiveContainer width="100%" height={480}>
           <BarChart data={menuOptimization} margin={{ top: 20, right: 120, bottom: 120, left: 160 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 11 }} />
+            <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 14 }} />
             <YAxis yAxisId="left" width={120} label={{ value: 'Revenue (₹)', angle: -90, position: 'insideLeft', offset: 10, dx: -20 }} />
             <YAxis yAxisId="right" orientation="right" width={100} label={{ value: 'Quantity Sold', angle: 90, position: 'insideRight', offset: 10, dx: 20 }} />
             <Tooltip
@@ -465,7 +465,7 @@ const Prescriptive = ({ orders, customers, orderItems }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Prescriptive;
 

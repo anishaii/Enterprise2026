@@ -129,8 +129,8 @@ const Descriptive = ({ orders, customers, orderItems }) => {
         <ResponsiveContainer width="100%" height={350}>
           <BarChart data={marketBasketData}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 12 }} />
-            <YAxis />
+            <XAxis dataKey="name" angle={-45} textAnchor="end" height={100} tick={{ fontSize: 15 }} />
+            <YAxis tick={{ fontSize: 15 }} />
             <Tooltip
               contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937' }}
               cursor={{ fill: 'rgba(14, 165, 233, 0.1)' }}
@@ -255,8 +255,8 @@ const Descriptive = ({ orders, customers, orderItems }) => {
         <ResponsiveContainer width="100%" height={420}>
           <BarChart data={locationData} margin={{ bottom: 90 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" angle={-45} textAnchor="end" height={110} tick={{ fontSize: 14 }} interval={0} />
-            <YAxis tick={{ fontSize: 14 }} />
+            <XAxis dataKey="name" angle={-45} textAnchor="end" height={110} tick={{ fontSize: 17 }} interval={0} />
+            <YAxis tick={{ fontSize: 17 }} />
             <Tooltip
               contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937' }}
               formatter={(value) => `₹${value}`}
@@ -345,8 +345,8 @@ const Descriptive = ({ orders, customers, orderItems }) => {
         <ResponsiveContainer width="100%" height={380}>
           <BarChart data={areaData} layout="vertical" margin={{ left: 130, right: 40, top: 10, bottom: 10 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" tick={{ fontSize: 13 }} />
-            <YAxis dataKey="name" type="category" width={125} tick={{ fontSize: 13 }} />
+            <XAxis type="number" tick={{ fontSize: 16 }} />
+            <YAxis dataKey="name" type="category" width={125} tick={{ fontSize: 16 }} />
             <Tooltip
               contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937' }}
             />
