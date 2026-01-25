@@ -1,0 +1,100 @@
+item_id,item_name,category,price_npr,is_vegetarian,spice_level,prep_time_minutes,popularity_score,calories
+1,Dal Bhat Set,Nepali Main Course,252,TRUE,Medium,34,0.919598183,170
+2,Thakali Khana Set,Nepali Main Course,252,FALSE,Medium,42,0.234850167,237
+3,Newari Khaja Set,Nepali Main Course,522,FALSE,Medium,43,0.590533084,458
+4,Momo (Veg),Nepali Main Course,407,TRUE,Medium,25,0.70023363,426
+5,Momo (Chicken),Nepali Main Course,310,FALSE,Medium,41,0.702119892,710
+6,Momo (Buff),Nepali Main Course,208,FALSE,Medium,35,0.339662804,712
+7,Choila,Nepali Main Course,513,FALSE,Medium,44,0.227870248,796
+8,Sekuwa,Nepali Main Course,170,FALSE,Medium,37,0.769331322,465
+9,Chatamari,Nepali Main Course,163,TRUE,Hot,28,0.209579751,489
+10,Wo (Bara),Nepali Main Course,241,FALSE,Medium,26,0.565997995,184
+11,Yomari,Nepali Main Course,355,FALSE,Medium,37,0.597513371,151
+12,Gundruk Dhido,Nepali Main Course,539,FALSE,Mild,23,0.310912673,551
+13,Sel Roti,Nepali Main Course,367,TRUE,Medium,29,0.73689641,419
+14,Kwati,Nepali Main Course,500,TRUE,Hot,27,0.542266385,401
+15,Sadeko (Chicken),Nepali Appetizers,289,FALSE,Medium,6,0.523815279,366
+16,Sadeko (Buff),Nepali Appetizers,351,FALSE,Medium,13,0.377764103,214
+17,Pani Puri,Nepali Appetizers,444,TRUE,Hot,12,0.436928911,797
+18,Samosa (Veg),Nepali Appetizers,162,TRUE,Hot,5,0.626805172,568
+19,Samosa (Chicken),Nepali Appetizers,388,FALSE,Medium,14,0.415079437,190
+20,Pakoda,Nepali Appetizers,127,TRUE,Hot,12,0.469670404,182
+21,Chhoila Sadeko,Nepali Appetizers,147,FALSE,Medium,12,0.599553414,696
+22,Bhuttan,Nepali Appetizers,326,FALSE,Mild,7,0.656471029,367
+23,Butter Chicken,Indian Main Course,702,FALSE,Medium,26,0.224260154,356
+24,Chicken Tikka Masala,Indian Main Course,214,FALSE,Mild,32,0.321031521,390
+25,Paneer Butter Masala,Indian Main Course,763,TRUE,Medium,23,0.744539884,556
+26,Dal Makhani,Indian Main Course,430,FALSE,Medium,30,0.321836735,674
+27,Palak Paneer,Indian Main Course,359,TRUE,Medium,38,0.296732772,727
+28,Biryani (Veg),Indian Main Course,756,TRUE,Mild,40,0.722876354,177
+29,Biryani (Chicken),Indian Main Course,755,FALSE,Medium,30,0.797303506,497
+30,Biryani (Mutton),Indian Main Course,672,FALSE,Medium,20,0.36327935,432
+31,Tandoori Chicken,Indian Main Course,458,FALSE,Mild,27,0.520453652,467
+32,Naan Set,Indian Main Course,424,FALSE,Mild,31,0.346475313,523
+33,Roti Set,Indian Main Course,671,FALSE,Medium,36,0.238935348,591
+34,Chowmein (Veg),Chinese,201,TRUE,Mild,21,0.498349104,262
+35,Chowmein (Chicken),Chinese,250,FALSE,Mild,15,0.780034304,151
+36,Chowmein (Buff),Chinese,279,FALSE,Mild,21,0.367187879,374
+37,Fried Rice (Veg),Chinese,275,TRUE,Mild,26,0.468669899,565
+38,Fried Rice (Chicken),Chinese,396,FALSE,Medium,25,0.810896337,550
+39,Thukpa (Veg),Chinese,404,TRUE,Medium,19,0.579383498,347
+40,Thukpa (Chicken),Chinese,389,FALSE,Medium,23,0.392468039,475
+41,Manchurian (Veg),Chinese,498,TRUE,Medium,26,0.606538617,552
+42,Manchurian (Chicken),Chinese,495,FALSE,Medium,17,0.409199592,638
+43,Chilli Chicken,Chinese,277,FALSE,Medium,22,0.282512566,622
+44,Spring Rolls,Chinese,300,FALSE,Medium,24,0.354764977,293
+45,Wonton Soup,Chinese,495,FALSE,Hot,18,0.517790347,151
+46,Pizza Margherita,Continental,1196,FALSE,None,35,0.779251611,602
+47,Pizza Chicken,Continental,336,FALSE,None,42,0.403417875,248
+48,Pasta Carbonara,Continental,958,FALSE,None,35,0.707996685,553
+49,Pasta Alfredo,Continental,451,FALSE,None,41,0.667925328,777
+50,Burger (Veg),Continental,886,TRUE,None,36,0.296977228,571
+51,Burger (Chicken),Continental,403,FALSE,None,39,0.548411973,261
+52,Burger (Buff),Continental,809,FALSE,None,44,0.598101061,487
+53,French Fries,Continental,1005,FALSE,None,41,0.469054486,310
+54,Sandwich Club,Continental,879,FALSE,None,20,0.496336229,653
+55,Grilled Chicken,Continental,1195,FALSE,None,27,0.709534046,550
+56,Fish & Chips,Continental,939,FALSE,None,20,0.525524138,619
+57,Steak,Continental,674,FALSE,None,41,0.346393786,187
+58,Samay Baji,Snacks & Fast Food,279,TRUE,None,12,0.735227933,432
+59,Chatpate,Snacks & Fast Food,76,FALSE,None,11,0.410047045,758
+60,Paani Puri,Snacks & Fast Food,77,FALSE,None,10,0.317145793,665
+61,Aloo Chop,Snacks & Fast Food,84,FALSE,None,10,0.226162263,321
+62,Chips Chilli,Snacks & Fast Food,269,FALSE,None,14,0.730096413,186
+63,Sausage,Snacks & Fast Food,73,FALSE,None,10,0.53165898,756
+64,Hot Dog,Snacks & Fast Food,148,FALSE,None,10,0.245207754,402
+65,Chicken Wings,Snacks & Fast Food,262,FALSE,None,16,0.361084914,472
+66,Chicken Nuggets,Snacks & Fast Food,177,FALSE,None,11,0.534080757,715
+67,Fries,Snacks & Fast Food,107,FALSE,None,12,0.542036702,775
+68,Chiya (Tea),Beverages,61,TRUE,None,10,0.807594034,176
+69,Coffee,Beverages,184,TRUE,None,14,0.726423843,66
+70,Lassi Sweet,Beverages,133,TRUE,None,5,0.281972799,225
+71,Lassi Mango,Beverages,68,TRUE,None,14,0.685616693,148
+72,Butter Milk,Beverages,79,TRUE,None,13,0.566908227,109
+73,Fresh Lime Soda,Beverages,164,TRUE,None,13,0.576736649,69
+74,Coke,Beverages,94,TRUE,None,12,0.621180126,193
+75,Sprite,Beverages,171,TRUE,None,7,0.402797094,141
+76,Fanta,Beverages,127,TRUE,None,6,0.463084474,240
+77,Mineral Water,Beverages,115,TRUE,None,7,0.479358811,112
+78,Mango Juice,Beverages,154,TRUE,None,10,0.554499956,135
+79,Apple Juice,Beverages,78,TRUE,None,8,0.223300841,64
+80,Milk Shake,Beverages,83,TRUE,None,9,0.513345956,102
+81,Masala Tea,Beverages,89,TRUE,None,9,0.474359097,55
+82,Juju Dhau,Desserts,126,TRUE,None,7,0.582457941,418
+83,Sikarni,Desserts,203,TRUE,None,14,0.393773884,269
+84,Rasbari,Desserts,171,TRUE,None,14,0.247073829,623
+85,Gulab Jamun,Desserts,196,TRUE,None,11,0.456988685,790
+86,Kheer,Desserts,137,TRUE,None,14,0.293862226,245
+87,Ice Cream,Desserts,205,TRUE,None,10,0.628757554,637
+88,Brownie,Desserts,316,TRUE,None,9,0.582962356,338
+89,Chocolate Cake,Desserts,271,TRUE,None,9,0.567032448,396
+90,Fruit Salad,Desserts,155,TRUE,None,14,0.413583607,235
+91,Puri Tarkari,Breakfast,284,FALSE,None,14,0.256494193,243
+92,Paratha Set,Breakfast,337,FALSE,None,13,0.305198162,367
+93,Egg Curry Set,Breakfast,138,FALSE,None,13,0.303921122,506
+94,Bread Omelette,Breakfast,122,FALSE,None,19,0.569510059,249
+95,Pancakes,Breakfast,389,FALSE,None,13,0.424767569,591
+96,French Toast,Breakfast,195,FALSE,None,10,0.523626469,665
+97,Cornflakes,Breakfast,115,FALSE,None,17,0.766334963,407
+98,Upma,Breakfast,259,FALSE,None,13,0.545284507,529
+99,Idli Sambar,Breakfast,132,FALSE,None,10,0.686722506,576
