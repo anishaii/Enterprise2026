@@ -285,6 +285,8 @@ const Descriptive = ({ orders, customers, orderItems }) => {
                 outerRadius={90}
                 paddingAngle={3}
                 dataKey="value"
+                label={({ value }) => `${value}`}
+                labelStyle={{ fontSize: '14px', fontWeight: 'bold', fill: '#1f2937' }}
               >
                 {spiceData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={prefColors[index % prefColors.length]} />
@@ -318,6 +320,8 @@ const Descriptive = ({ orders, customers, orderItems }) => {
                 outerRadius={90}
                 paddingAngle={3}
                 dataKey="value"
+                label={({ value }) => `${value}`}
+                labelStyle={{ fontSize: '14px', fontWeight: 'bold', fill: '#1f2937' }}
               >
                 {dietaryData.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={prefColors[index % prefColors.length]} />

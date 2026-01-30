@@ -186,8 +186,8 @@ const Overview = ({ orders, customers, orderItems }) => {
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="hour" tick={{ fontSize: 16 }} />
-              <YAxis tick={{ fontSize: 16 }} />
+              <XAxis dataKey="hour" tick={{ fontSize: 16 }} label={{ value: 'Hour', position: 'insideBottom', offset: -5, fontWeight: 'bold' }} />
+              <YAxis tick={{ fontSize: 16 }} label={{ value: 'Number of Orders', angle: -90, position: 'insideLeft', fontWeight: 'bold' }} />
               <Tooltip
                 contentStyle={{ backgroundColor: '#f3f4f6', border: '1px solid #e5e7eb', borderRadius: '8px', color: '#1f2937', fontSize: 13 }}
                 cursor={{ fill: 'rgba(14, 165, 233, 0.1)' }}
